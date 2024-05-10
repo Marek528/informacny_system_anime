@@ -13,15 +13,15 @@ $result = $conn->query($query);
 </head>
 <body>
     <?php include('navbar.php'); ?>
-    <div class='ms-3'>
+    <div class='shadow-lg m-3 p-3'>
         <h3>Kategorie:</h3>
-        <ul>
+        <ul class='list-group list-group-flush'>
             <?php
             if ($result->num_rows > 0)
             {
                 while ($row = $result->fetch_assoc())
                 {
-                    echo "<li><a href='kategoria.php?id=".$row['ID']."'>".$row['nazov']."</a></li>";
+                    echo "<li class='list-group-item'><a href='kategoria.php?id=".$row['ID']."' class='list-group-item list-group-item-action list-group-item-secondary'>".$row['nazov']."</a></li>";
                 }
             }
             else 

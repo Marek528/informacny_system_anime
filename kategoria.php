@@ -26,7 +26,7 @@ $result = $conn->query($query);
 </head>
 <body>
     <?php include('navbar.php'); ?>
-    <div class='ms-3'>
+    <div class='shadow-lg m-3 p-3'>
         <?php
         $result = $conn->query($query);
         if ($result->num_rows > 0)
@@ -41,7 +41,7 @@ $result = $conn->query($query);
             echo "<h3>no result</h3>";
         }
         ?>
-        <ul>
+        <ul class='list-group list-group-flush'>
             <?php
             $query = "SELECT * FROM `produkty` WHERE kategoriaID=$id";
             $result = $conn->query($query);
@@ -49,7 +49,7 @@ $result = $conn->query($query);
             {
                 while ($row = $result->fetch_assoc())
                 {
-                    echo "<li><a href='produkt.php?id=".$row['ID']."'>".$row['nazov']."</a></li>";
+                    echo "<li class='list-group-item'><a href='produkt.php?id=".$row['ID']."' class='list-group-item list-group-item-action list-group-item-secondary'>".$row['nazov']."</a></li>";
                 }
             }
             else 
