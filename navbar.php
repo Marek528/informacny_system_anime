@@ -5,15 +5,17 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
+        <div class="collapse navbar-collapse d-flex justify-content-between">
+            <div class="navbar-nav">
+                <div class="nav-item">
                     <a class="nav-link active" href="kategorie.php">Kategorie</a>
-                </li>
-                <li class="nav-item">
+                </div>
+            </div>
+            <div class="navbar-nav">
+                <div class="nav-item">
                     <a class="nav-link active" href="login.php">Login</a>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
     </div>
 </nav>

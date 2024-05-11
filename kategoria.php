@@ -54,7 +54,7 @@ $result = $conn->query($query);
             }
             else 
             {
-                echo "<li>no result</li>";
+                echo "<li class='list-group-item'>no result</li>";
             }
             ?>
         </ul>
