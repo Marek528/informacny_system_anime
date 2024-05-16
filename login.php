@@ -1,3 +1,14 @@
+<?php
+    include('connect.php');
+    if ($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+        $email = $_POST['email'];
+        $heslo = $_POST['heslo'];
+
+        $query = "SELECT * FROM `dodavatelia` WHERE email='$email' AND heslo='$heslo'";
+        $result = $conn->query($query);
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,26 +19,37 @@
     <link rel="stylesheet" href="styles/login.css">
 </head>
 <body>
-    <?php include('navbar.php'); ?>
-    <div class="center-wrap">
-        <div class="main">
-            <h1 class='mb-5 mt-3'>Login</h1>
-            <form action='action.php' method='POST'>
-            <div class="form-floating mb-3">
-                    <input type="email" class="form-control" placeholder="name@example.com" name='email' required>
-                    <label for='email'>Email</label>
-                </div>
-                <div class="form-floating">
-                    <input type="password" class="form-control" placeholder="Heslo" name='heslo' required>
-                    <label for='heslo'>Heslo</label>
-                </div>
-                <div class="wrap">
-                    <input type="submit" class='btn btn-success btn-lg mt-3 mb-3'>
-                </div>
-            </form>
-            <p>Nie si zaregistrovany? <a href="register.php" style="text-decoration: none;">Vytvor si ucet</a></p>
-        </div>
-    </div>
+    <?php
+        include('navbar.php');
+        if ($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            if ($result->num_rows > 0)
+            {
+                $row = $result->fetch_assoc();
+                $_SESSION['meno'] = $row['meno'];
+                $_SESSION['priezvisko'] = $row['priezvisko'];
+                $_SESSION['email'] = $row['email'];
+                echo '
+                    <div class="center-wrap">
+                        <div class="main">
+                            <img src="img/success.png" alt="Uspesne prihlaseny" title="Uspesne prihlaseny">
+                            <h2>Uspesne prihlaseny</h2>
+                            <a href="index.php" style="text-decoration: none;">Domovska stranka</a>
+                        </div>
+                    </div>
+                ';
+            }
+            else
+            {
+                include('login_form.php');
+                echo "<script>alert('Nespravne prihlasovacie udaje');</script>";
+            }
+        }
+        else
+        {
+            include('login_form.php');
+        }
+    ?>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>

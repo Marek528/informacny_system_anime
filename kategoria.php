@@ -28,6 +28,7 @@ $result = $conn->query($query);
     <?php include('navbar.php'); ?>
     <div class='shadow-lg m-3 p-3'>
         <?php
+        $query = "SELECT * FROM `kategorie` WHERE ID=$id";
         $result = $conn->query($query);
         if ($result->num_rows > 0)
         {

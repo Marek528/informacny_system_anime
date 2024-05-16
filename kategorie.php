@@ -1,7 +1,5 @@
 <?php
 include('connect.php');
-$query = "SELECT * FROM `kategorie`";
-$result = $conn->query($query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,6 +15,8 @@ $result = $conn->query($query);
         <h3>Kategorie:</h3>
         <ul class='list-group list-group-flush'>
             <?php
+            $query = "SELECT * FROM `kategorie`";
+            $result = $conn->query($query);
             if ($result->num_rows > 0)
             {
                 while ($row = $result->fetch_assoc())

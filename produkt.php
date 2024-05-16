@@ -28,6 +28,7 @@ $result = $conn->query($query);
     <?php include('navbar.php'); ?>
     <div class='ms-5'>
         <?php
+        $query = "SELECT * FROM `produkty` WHERE ID=$id";
         $result = $conn->query($query);
         $kategoria_id;
         if ($result->num_rows > 0)

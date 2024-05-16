@@ -13,7 +13,19 @@
             </div>
             <div class="navbar-nav">
                 <div class="nav-item">
-                    <a class="nav-link active" href="login.php">Login</a>
+                    <?php
+                    if (isset($_SESSION['email']))
+                    {
+                        $query = 'SELECT * FROM `dodavatelia` WHERE email="'.$_SESSION['email'].'"';
+                        $result = $conn->query($query);
+                        $row = $result->fetch_assoc();
+                        echo "<a class='nav-link active' href='profile.php'> ".$row['meno']." ".$row['priezvisko']." </a>";
+                    }
+                    else
+                    {
+                        echo "<a class='nav-link active' href='login.php'>Login</a>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>

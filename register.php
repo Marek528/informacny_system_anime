@@ -1,6 +1,6 @@
 <?php
 include('connect.php');
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $username = $_POST['meno'];
     $surname = $_POST['priezvisko'];
@@ -8,8 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $pass = $_POST['heslo'];
 
     $query = "SELECT COUNT(*) FROM dodavatelia WHERE email = '$email'";
-    $result = mysqli_query($conn, $query);
-    $count = mysqli_fetch_row($result)[0];
+    $result = $conn->query($query);
 }
 ?>
 <!DOCTYPE html>
@@ -26,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     include('navbar.php');
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
-        if ($count > 0)
+        if ($result->num_rows > 0)
         {
             include('register_form.php');
             // alert okno ked zada pouzity mail
@@ -35,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         else
         {
             $insertQuery = "INSERT INTO dodavatelia (meno, priezvisko, email, heslo) VALUES ('$username', '$surname', '$email', '$pass')";
-            mysqli_query($conn, $insertQuery);
+            $conn->query($insertQuery);
             echo '
             <div class="center-wrap">
                 <div class="main">
