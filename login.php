@@ -20,7 +20,6 @@
 </head>
 <body>
     <?php
-        include('navbar.php');
         if ($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             if ($result->num_rows > 0)
@@ -29,6 +28,7 @@
                 $_SESSION['meno'] = $row['meno'];
                 $_SESSION['priezvisko'] = $row['priezvisko'];
                 $_SESSION['email'] = $row['email'];
+                include('navbar.php');
                 echo '
                     <div class="center-wrap">
                         <div class="main">
@@ -41,12 +41,14 @@
             }
             else
             {
+                include('navbar.php');
                 include('login_form.php');
                 echo "<script>alert('Nespravne prihlasovacie udaje');</script>";
             }
         }
         else
         {
+            include('navbar.php');
             include('login_form.php');
         }
     ?>

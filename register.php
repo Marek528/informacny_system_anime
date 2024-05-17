@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $email = $_POST['email'];
     $pass = $_POST['heslo'];
 
-    $query = "SELECT COUNT(*) FROM dodavatelia WHERE email = '$email'";
+    $query = "SELECT * FROM dodavatelia WHERE email = '$email'";
     $result = $conn->query($query);
 }
 ?>
@@ -28,8 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         if ($result->num_rows > 0)
         {
             include('register_form.php');
-            // alert okno ked zada pouzity mail
-            echo "Email is already used.";
+            echo "<script>alert('Email je uz pouzity');</script>";
         }
         else
         {
