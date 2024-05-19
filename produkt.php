@@ -23,6 +23,7 @@ $result = $conn->query($query);
     }
     ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <?php include('navbar.php'); ?>
@@ -37,19 +38,23 @@ $result = $conn->query($query);
             {
                 $kategoria_id = $row['kategoriaID'];
                 echo "<h2>".$row['nazov']."</h2>";
-                echo '<img src="'.$row['obrazky'].'" alt="one piece vol. 1" title="one piece vol. 1" class="mb-3">';
+                echo '<div class="row mx-0">';
+                echo '<div class="col px-0 img-length">';
+                echo '<img src="'.$row['obrazky'].'" alt="'.$row['obrazky'].'" title="'.$row['obrazky'].'">';
+                echo '</div>';
             }
         }
         else 
         {
             echo "<h2>no result</h2>";
-            echo '<img src="https://via.placeholder.com/150" alt="one piece vol. 1" title="one piece vol. 1" class="mb-3">';
+            echo '<img src="https://via.placeholder.com/150" alt="'.$row['obrazky'].'" title="'.$row['obrazky'].'">';
         }
         
         $query = "SELECT * FROM kategorie WHERE ID=$kategoria_id";
         $result = $conn->query($query);
         if ($result->num_rows > 0)
         {
+            echo '<div class="col px-0">';
             echo "<p class='mb-2'><strong>Kategorie: </strong>";
             while ($row = $result->fetch_assoc())
             {
@@ -71,6 +76,7 @@ $result = $conn->query($query);
                 echo "<p class='mb-2'><strong>Cena:</strong> ".$row['cena']."€</p>";
                 echo "<p class='mb-2'><strong>Pocet kusov:</strong> ".$row['pocet_kusov']."</p>";
                 echo "<p><strong>Popis:</strong><br> ".$row['popis']."</p>";
+                echo '</div>';
             }
         }
         else 
