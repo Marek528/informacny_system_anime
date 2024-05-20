@@ -5,7 +5,7 @@ $query = "SELECT * FROM `produkty` WHERE ID=$id";
 $result = $conn->query($query);
 ?>
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,7 @@ $result = $conn->query($query);
 </head>
 <body>
     <?php include('navbar.php'); ?>
-    <div class='ms-5'>
+    <div class='ms-5 mt-3'>
         <?php
         $query = "SELECT * FROM `produkty` WHERE ID=$id";
         $result = $conn->query($query);
@@ -40,14 +40,14 @@ $result = $conn->query($query);
                 echo "<h2>".$row['nazov']."</h2>";
                 echo '<div class="row mx-0">';
                 echo '<div class="col px-0 img-length">';
-                echo '<img src="'.$row['obrazky'].'" alt="'.$row['obrazky'].'" title="'.$row['obrazky'].'">';
+                echo '<img src="'.$row['obrazky'].'" alt="'.$row['obrazky'].'">';
                 echo '</div>';
             }
         }
         else 
         {
             echo "<h2>no result</h2>";
-            echo '<img src="https://via.placeholder.com/150" alt="'.$row['obrazky'].'" title="'.$row['obrazky'].'">';
+            echo '<img src="https://via.placeholder.com/150" alt="'.$row['obrazky'].'">';
         }
         
         $query = "SELECT * FROM kategorie WHERE ID=$kategoria_id";

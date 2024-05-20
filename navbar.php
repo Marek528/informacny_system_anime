@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary border-bottom" data-bs-theme='dark'>
     <div class="container-fluid">
         <a class="navbar-brand" href="index.php">INFORMACNY SYSTEM ANIME</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
