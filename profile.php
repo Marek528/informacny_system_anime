@@ -2,7 +2,7 @@
 include('connect.php');
 ?>
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,18 +11,26 @@ include('connect.php');
 </head>
 <body>
     <?php include('navbar.php'); ?>
-    <div class="container">
+    <div class="ms-5 ps-5 mt-3">
         <?php
         echo '<h1>Vitaj '.$_SESSION['meno'].' '.$_SESSION['priezvisko'].'</h1>';
         ?>
-        <form method="POST">
+
+        <h4>Operacie</h4>
+        <ul>
+            <li><a href='add_existing_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Pridat existujuci produkt</a></li>
+            <li><a href='add_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Pridat novy produkt</a></li>
+            <li><a href='remove_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Odstranit produkt</a></li>
+        </ul>
+
+        <form method="POST" class='mt-5'>
             <button class="btn btn-danger" type="submit" name="logout">Logout</button>
         </form>
 
         <?php
         if(isset($_POST['logout'])) {
             session_unset();
-            header("Location: index.php");
+            header("Location: login.php");
             exit();
         }
         ?>
