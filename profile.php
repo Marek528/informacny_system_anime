@@ -18,10 +18,13 @@ include('connect.php');
 
         <h4>Operacie</h4>
         <ul>
-            <li><a href='add_existing_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Pridat existujuci produkt</a></li>
-            <li><a href='add_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Pridat novy produkt</a></li>
-            <li><a href='remove_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Odstranit produkt</a></li>
+            <li><a href='profile_operations/update_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Aktualizovat produkt</a></li>
+            <li><a href='profile_operations/add_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Pridat produkt</a></li>
+            <li><a href='profile_operations/remove_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Odstranit produkt</a></li>
         </ul>
+
+        <h4>Moje objednavky</h4>
+        <!-- Tu bude zoznam objednavok cez nejaku simple tabulku + ?moznost menit stav? -->
 
         <form method="POST" class='mt-5'>
             <button class="btn btn-danger" type="submit" name="logout">Logout</button>
