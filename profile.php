@@ -24,14 +24,15 @@ include('connect.php');
         </ul>
 
         <h4>Moje objednavky</h4>
-        <!-- Tu bude zoznam objednavok cez nejaku simple tabulku + ?moznost menit stav? -->
+        <!-- Tu bude zoznam objednavok cez nejaku simple tabulku + ?moznost menit stav? (dorucuje sa, dorucene) -->
 
         <form method="POST" class='mt-5'>
             <button class="btn btn-danger" type="submit" name="logout">Logout</button>
         </form>
 
         <?php
-        if(isset($_POST['logout'])) {
+        if(isset($_POST['logout']))
+        {
             session_unset();
             header("Location: login.php");
             exit();

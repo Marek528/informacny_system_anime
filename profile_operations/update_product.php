@@ -42,7 +42,17 @@ include('../connect.php');
                 </select>
             </div>
             <div class="mb-3">
-                <label for="quantity" class="form-label">Pocet kusov, kolko chces pridat:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="operation" id="add" value="add" required>
+                    <label class="form-check-label" for="add">Pridat</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="operation" id="remove" value="remove" required>
+                    <label class="form-check-label" for="remove">Odstranit</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Pocet kusov, kolko chces pridat/odstranit:</label>
                 <input type="number" name="quantity" id="quantity" class="form-control" min="1" required>
             </div>
             <button type="submit" class="btn btn-primary" name='update'>Update</button>
@@ -51,6 +61,44 @@ include('../connect.php');
             // spracovanie udajov cez isset POST 'update'
             // 1. overit ci vybral produkt
             // potom klasicky spravit sql query na update produktu
+            if(isset($_POST['update']))
+            {
+                $product = $_POST['product'];
+                if(isset($_POST['update']))
+                {
+                    $product = $_POST['product'];
+                    $quantity = $_POST['quantity'];
+
+                    if($product == '-------------------')
+                    {
+                        echo '<p class="text-danger">Prosim vyber produkt</p>';
+                    }
+                    else
+                    {
+                        $operation = $_POST['operation'];
+                        if($operation == 'remove')
+                        {
+                            $query = 'SELECT pocet_kusov FROM `produkty` WHERE ID='.$product.'';
+                            $result = $conn->query($query);
+                            $row = $result->fetch_assoc();
+                            if($row['pocet_kusov'] < $quantity)
+                            {
+                                echo '<p class="text-danger">Nemozes odstranit viac kusov ako je na sklade</p>';
+                                exit();
+                            }
+                            $query = 'UPDATE `produkty` SET pocet_kusov=pocet_kusov - '.$quantity.' WHERE ID='.$product.'';
+                            $conn->query($query);
+                            echo '<p class="text-success">Produkt bol uspesne aktualizovany</p>';
+                        }
+                        else
+                        {
+                            $query = 'UPDATE `produkty` SET pocet_kusov=pocet_kusov + '.$quantity.' WHERE ID='.$product.'';
+                            $conn->query($query);
+                            echo '<p class="text-success">Produkt bol uspesne aktualizovany</p>';
+                        }
+                    }
+                }
+            }
         ?>
     </div>
 </body>
