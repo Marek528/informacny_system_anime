@@ -40,7 +40,7 @@ $result = $conn->query($query);
                 echo "<h2>".$row['nazov']."</h2>";
                 echo '<div class="row mx-0">';
                 echo '<div class="col px-0 img-length">';
-                echo '<img src="'.$row['obrazky'].'" alt="'.$row['obrazky'].'">';
+                echo '<img src="'.$row['obrazky'].'" alt="'.$row['nazov'].'" title="'.$row['nazov'].'">';
                 echo '</div>';
             }
         }
@@ -75,7 +75,7 @@ $result = $conn->query($query);
             {
                 echo "<p class='mb-2'><strong>Cena:</strong> ".$row['cena']."€</p>";
                 echo "<p class='mb-2'><strong>Pocet kusov:</strong> ".$row['pocet_kusov']."</p>";
-                echo "<p><strong>Popis:</strong><br> ".$row['popis']."</p>";
+                echo "<p style='max-width:70em;'><strong>Popis:</strong><br> ".$row['popis']."</p>";
                 echo '</div>';
             }
         }

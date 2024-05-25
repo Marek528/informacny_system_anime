@@ -12,11 +12,12 @@ include('../connect.php');
 <body>
     <?php include('navbar.php'); ?>
     <div class="ms-5 ps-5 mt-3">
-        <h1>Aktualizovat produkt</h1>
+        <a href="../profile.php" class="link-opacity-50-hover link-underline link-underline-opacity-0">Späť</a>
+        <h1 class='mt-3'>Aktualizovat produkt</h1>
         <form method="POST" action="update_product.php">
             <div class="mb-3">
                 <label for="product" class="form-label">Vyber si produkt:</label>
-                <select name="product" id="product" class="form-select" required>
+                <select name="product" id="product" class="form-select" style="width:auto;" required>
                     <option selected>-------------------</option>
                     <?php
                         $query = 'SELECT ID FROM `dodavatelia` WHERE email="'.$_SESSION["email"].'"';
@@ -42,6 +43,7 @@ include('../connect.php');
                 </select>
             </div>
             <div class="mb-3">
+                <label for="operation" class="form-label">Pocet kusov:</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="operation" id="add" value="add" required>
                     <label class="form-check-label" for="add">Pridat</label>
@@ -52,10 +54,10 @@ include('../connect.php');
                 </div>
             </div>
             <div class="mb-3">
-                <label for="quantity" class="form-label">Pocet kusov, kolko chces pridat/odstranit:</label>
-                <input type="number" name="quantity" id="quantity" class="form-control" min="1" required>
+                <label for="quantity" class="form-label">Kolko chces pridat/odstranit:</label>
+                <input type="number" name="quantity" id="quantity" class="form-control" min="1" style="width:auto;" required>
             </div>
-            <button type="submit" class="btn btn-primary" name='update'>Update</button>
+            <button type="submit" class="btn btn-success" name='update'>Update</button>
         </form>
         <?php
             // spracovanie udajov cez isset POST 'update'
@@ -64,38 +66,34 @@ include('../connect.php');
             if(isset($_POST['update']))
             {
                 $product = $_POST['product'];
-                if(isset($_POST['update']))
-                {
-                    $product = $_POST['product'];
-                    $quantity = $_POST['quantity'];
+                $quantity = $_POST['quantity'];
 
-                    if($product == '-------------------')
+                if($product == '-------------------')
+                {
+                    echo '<p class="text-danger">Prosim vyber produkt</p>';
+                }
+                else
+                {
+                    $operation = $_POST['operation'];
+                    if($operation == 'remove')
                     {
-                        echo '<p class="text-danger">Prosim vyber produkt</p>';
+                        $query = 'SELECT pocet_kusov FROM `produkty` WHERE ID='.$product.'';
+                        $result = $conn->query($query);
+                        $row = $result->fetch_assoc();
+                        if($row['pocet_kusov'] < $quantity)
+                        {
+                            echo '<p class="text-danger">Nemozes odstranit viac kusov ako je na sklade</p>';
+                            exit();
+                        }
+                        $query = 'UPDATE `produkty` SET pocet_kusov=pocet_kusov - '.$quantity.' WHERE ID='.$product.'';
+                        $conn->query($query);
+                        echo '<p class="text-success">Produkt bol uspesne aktualizovany</p>';
                     }
                     else
                     {
-                        $operation = $_POST['operation'];
-                        if($operation == 'remove')
-                        {
-                            $query = 'SELECT pocet_kusov FROM `produkty` WHERE ID='.$product.'';
-                            $result = $conn->query($query);
-                            $row = $result->fetch_assoc();
-                            if($row['pocet_kusov'] < $quantity)
-                            {
-                                echo '<p class="text-danger">Nemozes odstranit viac kusov ako je na sklade</p>';
-                                exit();
-                            }
-                            $query = 'UPDATE `produkty` SET pocet_kusov=pocet_kusov - '.$quantity.' WHERE ID='.$product.'';
-                            $conn->query($query);
-                            echo '<p class="text-success">Produkt bol uspesne aktualizovany</p>';
-                        }
-                        else
-                        {
-                            $query = 'UPDATE `produkty` SET pocet_kusov=pocet_kusov + '.$quantity.' WHERE ID='.$product.'';
-                            $conn->query($query);
-                            echo '<p class="text-success">Produkt bol uspesne aktualizovany</p>';
-                        }
+                        $query = 'UPDATE `produkty` SET pocet_kusov=pocet_kusov + '.$quantity.' WHERE ID='.$product.'';
+                        $conn->query($query);
+                        echo '<p class="text-success">Produkt bol uspesne aktualizovany</p>';
                     }
                 }
             }
