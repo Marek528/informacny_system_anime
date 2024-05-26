@@ -14,13 +14,13 @@ include('../connect.php');
     <div class="ms-5 ps-5 mt-3">
         <a href="../profile.php" class="link-opacity-50-hover link-underline link-underline-opacity-0">Späť</a>
         <h1 class='mt-3'>Pridat produkt</h1>
-        <form method="POST" action="add_product.php">
+        <form method="POST" action="add_product.php" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="name" class="form-label">Nazov:*</label>
+                <label for="name" class="form-label">Nazov:</label>
                 <input type="text" name="name" id="name" class="form-control" style="max-width:25em;" required>
             </div>
             <div class="mb-3">
-                <label for="category">Kategoria:*</label>
+                <label for="category">Kategoria:</label>
                 <select name="category" id="category" class="form-select" style="width:auto;" required>
                     <option selected>-------------------</option>
                     <?php
@@ -34,19 +34,19 @@ include('../connect.php');
                 </select>
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label">Popis:*</label>
+                <label for="description" class="form-label">Popis:</label>
                 <textarea name="description" id="description" class="form-control" style="max-width:35em;" required></textarea>
             </div>
             <div class="mb-3">
-                <label for="price" class="form-label">Cena:*</label>
+                <label for="price" class="form-label">Cena:</label>
                 <input type="number" name="price" id="price" class="form-control" style="width:auto;" min='0' step='0.01' required>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Obrazok:</label>
-                <input type="file" name="image" id="image" accept=".png" class="form-control" style="width:auto;">
+                <input type="file" name="image" id="image" accept=".png" class="form-control" style="width:auto;" required>
             </div>
             <div class="mb-3">
-                <label for="quantity" class="form-label">Pocet kusov:*</label>
+                <label for="quantity" class="form-label">Pocet kusov:</label>
                 <input type="number" name="quantity" id="quantity" class="form-control" style="width:auto;" min='1' required>
                 
             </div>
@@ -62,17 +62,39 @@ include('../connect.php');
                     echo '<p class="text-danger">Vyber si kategoriu!</p>';
                     exit();
                 }
+                // overenie ci uz produkt s rovnakym nazvom je v db
+                $query = "SELECT * FROM `produkty` WHERE nazov='".$_POST['name']."'";
+                $result = $conn->query($query);
+                if($result->num_rows > 0)
+                {
+                    echo '<p class="text-danger">Produkt s rovnakym nazvom uz existuje!</p>';
+                    exit();
+                }
+
+                // naplnanie db
                 $name = $_POST['name'];
                 $description = $_POST['description'];
                 $price = $_POST['price'];
                 $quantity = $_POST['quantity'];
-                $image = $_POST['image'];
+                $image = $_FILES['image']['name'];
                 $image = "img/$image";
                 $query = "INSERT INTO `produkty` (nazov, kategoriaID, popis, cena, pocet_kusov, obrazky) VALUES ('$name', '$category', '$description', '$price', '$quantity', '$image')";
-                $conn->query($query);
-                if ($conn->query($query) == TRUE)
+                $result = $conn->query($query);
+                if ($result == TRUE)
                 {
                     //vytvori sa objednavka ak je uspesne pridany produkt
+                    $query = "SELECT ID FROM `produkty` WHERE nazov='$name'";
+                    $result = $conn->query($query);
+                    $row = $result->fetch_assoc();
+                    $produkt_id = $row['ID'];
+
+                    $query = 'SELECT ID FROM `dodavatelia` WHERE email="'.$_SESSION['email'].'"';
+                    $result = $conn->query($query);
+                    $row = $result->fetch_assoc();
+                    $dodavatel_id = $row['ID'];
+
+                    $query = "INSERT INTO `objednavky` (dodavatelID, produktID, stav) VALUES ('$dodavatel_id', '$produkt_id', 'doručuje sa')";
+                    $conn->query($query);
                     echo '<p class="text-success">Produkt bol uspesne pridany</p>';
                 }
                 else
@@ -80,7 +102,15 @@ include('../connect.php');
                     echo '<p class="text-danger">Pri pridavani produktu nastala chyba:</p> '.$conn->error.' ';
                 }
 
-                // stahovanie obrazku :)
+                // download image
+                $image = $_FILES['image']['name'];
+                $image_tmp = $_FILES['image']['tmp_name'];
+                $path = "C:/xampp/htdocs/informacny_system_anime/img/";
+
+                $image = basename($image);
+                $image = preg_replace("/[^a-zA-Z0-9\.\-\_]/", "", $image);
+                $image_path = $path . $image;
+                move_uploaded_file($image_tmp, $image_path);
             }
         ?>
     </div>
