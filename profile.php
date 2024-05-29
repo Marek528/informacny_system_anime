@@ -59,7 +59,7 @@ include('connect.php');
                     echo '<td class="align-middle">'.$row2['pocet_kusov'].'</td>';
                     if ($row['stav'] == "doručuje sa")
                     {
-                        echo '<td class="text-warning">'.$row['stav'].' <button class="btn btn-success" type="submit" name="change_state">oznacit ako dorucene</button></td>';
+                        echo '<td class="text-warning">'.$row['stav'].' <a href="profile.php?id='.$row2['ID'].'" class="btn btn-success" role="button">oznacit ako dorucene</a></td>';
                     }
                     else
                     {
@@ -85,6 +85,14 @@ include('connect.php');
         {
             session_unset();
             header("Location: login.php");
+            exit();
+        }
+
+        if(isset($_GET['id']))
+        {
+            $query = 'UPDATE `objednavky` SET stav="doručené" WHERE produktID='.$_GET['id'].'';
+            $conn->query($query);
+            header("Location: profile.php");
             exit();
         }
         ?>
