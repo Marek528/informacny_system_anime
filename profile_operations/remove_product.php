@@ -1,5 +1,30 @@
 <?php
-include('../connect.php');
+    include('../connect.php');
+    $report = "";
+
+    if(isset($_POST['delete']))
+    {
+        $product = $_POST['product'];
+
+        if($product == '-------------------')
+        {
+            $report = '<p class="text-danger">Prosim vyber produkt</p>';
+        }
+        else
+        {
+            $query = 'DELETE FROM `produkty` WHERE ID='.$product.'';
+            if($conn->query($query))
+            {
+                $query = 'DELETE FROM `objednavky` WHERE produktID='.$product.'';
+                $conn->query($query);
+                $report = '<p class="text-success">Produkt bol uspesne odstraneny</p>';
+            }
+            else
+            {
+                $report = '<p class="text-danger">Produkt sa nepodarilo odstranit</p>';
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html data-bs-theme="dark">
@@ -44,32 +69,13 @@ include('../connect.php');
                 </select>
             </div>
             <button type="submit" class="btn btn-danger" name='delete'>Odstranit</button>
+            <?php
+                if(!empty($report))
+                {
+                    echo $report;
+                }
+            ?>
         </form>
-        <?php
-            if(isset($_POST['delete']))
-            {
-                $product = $_POST['product'];
-
-                if($product == '-------------------')
-                {
-                    echo '<p class="text-danger">Prosim vyber produkt</p>';
-                }
-                else
-                {
-                    $query = 'DELETE FROM `produkty` WHERE ID='.$product.'';
-                    if($conn->query($query))
-                    {
-                        $query = 'DELETE FROM `objednavky` WHERE produktID='.$product.'';
-                        $conn->query($query);
-                        echo '<p class="text-success">Produkt bol uspesne odstraneny</p>';
-                    }
-                    else
-                    {
-                        echo '<p class="text-danger">Produkt sa nepodarilo odstranit</p>';
-                    }
-                }
-            }
-        ?>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
