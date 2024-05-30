@@ -1,5 +1,10 @@
 <?php
-include('connect.php');
+    include('connect.php');
+    if(!isset($_SESSION['email']))
+    {
+        header("Location: login.php");
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html data-bs-theme="dark">

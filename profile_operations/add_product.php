@@ -40,7 +40,7 @@ include('../connect.php');
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Cena:</label>
-                <input type="number" name="price" id="price" class="form-control" style="width:auto;" min='0' step='0.01' required>
+                <input type="number" name="price" id="price" class="form-control" style="width:auto;" min='0' step='0.01' max='99.99' required>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Obrazok:</label>

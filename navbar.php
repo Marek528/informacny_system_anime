@@ -1,6 +1,9 @@
 <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary border-bottom" data-bs-theme='dark'>
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">INFORMACNY SYSTEM ANIME</a>
+        <a class="navbar-brand" href="index.php">
+            <img src="img/icon.png" alt="Anime" class="d-inline-block align-text-top" width="24" height="24">
+            INFORMAČNÝ SYSTÉM ANIME
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,7 +11,7 @@
         <div class="collapse navbar-collapse d-flex justify-content-between">
             <div class="navbar-nav">
                 <div class="nav-item">
-                    <a class="nav-link active" href="kategorie.php">Kategorie</a>
+                    <a class="nav-link active" href="kategorie.php">Kategórie</a>
                 </div>
             </div>
             <div class="navbar-nav">
