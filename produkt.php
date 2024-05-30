@@ -14,12 +14,12 @@ $result = $conn->query($query);
     {
         while ($row = $result->fetch_assoc())
         {
-            echo "<title>".$row['nazov']." | Informacny system anime </title>";
+            echo "<title>".$row['nazov']." | Informačný systém anime </title>";
         }
     }
     else 
     {
-        echo "<title>Informacny system anime</title>";
+        echo "<title>Informačný systém anime</title>";
     }
     ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -56,7 +56,7 @@ $result = $conn->query($query);
         if ($result->num_rows > 0)
         {
             echo '<div class="col px-0">';
-            echo "<p class='mb-2'><strong>Kategorie: </strong>";
+            echo "<p class='mb-2'><strong>Kategória: </strong>";
             while ($row = $result->fetch_assoc())
             {
                 echo "<a href='kategoria.php?id=".$row['ID']."'>".$row['nazov']."</a>";
@@ -65,7 +65,7 @@ $result = $conn->query($query);
         }
         else 
         {
-            echo "<p><strong>Kategorie:</strong><br> no result</p>";
+            echo "<p><strong>Kategória:</strong><br> no result</p>";
         }
 
         $query = "SELECT * FROM `produkty` WHERE ID=$id";
@@ -75,7 +75,7 @@ $result = $conn->query($query);
             while ($row = $result->fetch_assoc())
             {
                 echo "<p class='mb-2'><strong>Cena:</strong> ".$row['cena']."€</p>";
-                echo "<p class='mb-2'><strong>Pocet kusov:</strong> ".$row['pocet_kusov']."</p>";
+                echo "<p class='mb-2'><strong>Počet kusov:</strong> ".$row['pocet_kusov']."</p>";
                 echo "<p style='max-width:70em;'><strong>Popis:</strong><br> ".$row['popis']."</p>";
                 echo '</div>';
             }
@@ -83,7 +83,7 @@ $result = $conn->query($query);
         else 
         {
             echo '<p><strong>Cena:</strong><br> no result</p>';
-            echo '<p><strong>Pocet kusov:</strong><br> no result</p>';
+            echo '<p><strong>Počet kusov:</strong><br> no result</p>';
             echo '<p><strong>Popis:</strong><br> no result</p>';
         }
         ?>

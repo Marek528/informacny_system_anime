@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | Informacny system anime</title>
+    <title>Register | Informačný systém anime</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="favicon.png" type="image/png">
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         if ($result->num_rows > 0)
         {
             include('register_form.php');
-            echo "<script>alert('Email je uz pouzity');</script>";
+            echo "<script>alert('Email je už použitý');</script>";
         }
         else
         {
@@ -39,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <div class="center-wrap">
                 <div class="main">
                     <img src="img/success.png" alt="Uspesne zaregistrovany" title="Teraz sa mozes prihlasit">
-                    <h2>Uspesne zaregistrovany</h2>
-                    <a href="login.php" style="text-decoration: none;">Prihlasit sa</a>
+                    <h2>Úspešne zaregistrovaný</h2>
+                    <a href="login.php" style="text-decoration: none;">Prihlásiť sa</a>
                 </div>
             </div>
             ';

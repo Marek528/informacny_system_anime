@@ -8,7 +8,7 @@
 
         if($product == '-------------------')
         {
-            $report = '<p class="text-danger">Prosim vyber produkt</p>';
+            $report = '<p class="text-danger mt-3">Prosim vyber produkt</p>';
         }
         else
         {
@@ -17,11 +17,11 @@
             {
                 $query = 'DELETE FROM `objednavky` WHERE produktID='.$product.'';
                 $conn->query($query);
-                $report = '<p class="text-success">Produkt bol uspesne odstraneny</p>';
+                $report = '<p class="text-success mt-3">Produkt bol uspesne odstraneny</p>';
             }
             else
             {
-                $report = '<p class="text-danger">Produkt sa nepodarilo odstranit</p>';
+                $report = '<p class="text-danger mt-3">Produkt sa nepodarilo odstranit</p>';
             }
         }
     }
@@ -31,7 +31,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odstranit produkt | Informacny system anime</title>
+    <title>Odstrániť produkt | Informačný systém anime</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="../favicon.png" type="image/png">
 </head>
@@ -39,7 +39,7 @@
     <?php include('navbar.php'); ?>
     <div class="ms-5 ps-5 mt-3">
         <a href="../profile.php" class="link-opacity-50-hover link-underline link-underline-opacity-0">Späť</a>
-        <h1 class='mt-3'>Odstranit produkt</h1>
+        <h1 class='mt-3'>Odstrániť produkt</h1>
         <form method="POST" action="remove_product.php">
             <div class="mb-3">
                 <label for="product" class="form-label">Vyber si produkt:</label>
@@ -68,7 +68,7 @@
                     ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-danger" name='delete'>Odstranit</button>
+            <button type="submit" class="btn btn-danger" name='delete'>Odstrániť</button>
             <?php
                 if(!empty($report))
                 {

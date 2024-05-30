@@ -14,6 +14,6 @@
                 <input type="submit" class='btn btn-success btn-lg mt-3 mb-3'>
             </div>
         </form>
-        <p>Nie si zaregistrovany? <a href="register.php" style="text-decoration: none;">Vytvor si ucet</a></p>
+        <p>Nie si zaregistrovaný? <a href="register.php" style="text-decoration: none;">Vytvor si účet</a></p>
     </div>
 </div>

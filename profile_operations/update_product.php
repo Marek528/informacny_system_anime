@@ -6,7 +6,7 @@ include('../connect.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aktualizovat produkt | Informacny system anime</title>
+    <title>Aktualizovať produkt | Informačný systém anime</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="../favicon.png" type="image/png">
 </head>
@@ -14,7 +14,7 @@ include('../connect.php');
     <?php include('navbar.php'); ?>
     <div class="ms-5 ps-5 mt-3">
         <a href="../profile.php" class="link-opacity-50-hover link-underline link-underline-opacity-0">Späť</a>
-        <h1 class='mt-3'>Aktualizovat produkt</h1>
+        <h1 class='mt-3'>Aktualizovať produkt</h1>
         <form method="POST" action="update_product.php">
             <div class="mb-3">
                 <label for="product" class="form-label">Vyber si produkt:</label>
@@ -44,18 +44,18 @@ include('../connect.php');
                 </select>
             </div>
             <div class="mb-3">
-                <label for="operation" class="form-label">Pocet kusov:</label>
+                <label for="operation" class="form-label">Počet kusov:</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="operation" id="add" value="add" required>
-                    <label class="form-check-label" for="add">Pridat</label>
+                    <label class="form-check-label" for="add">Pridať</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="operation" id="remove" value="remove" required>
-                    <label class="form-check-label" for="remove">Odstranit</label>
+                    <label class="form-check-label" for="remove">Odstrániť</label>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="quantity" class="form-label">Kolko chces pridat/odstranit:</label>
+                <label for="quantity" class="form-label">Koľko chceš pridať/odstrániť:</label>
                 <input type="number" name="quantity" id="quantity" class="form-control" min="1" style="width:auto;" required>
             </div>
             <button type="submit" class="btn btn-success" name='update'>Update</button>
@@ -71,7 +71,7 @@ include('../connect.php');
 
                 if($product == '-------------------')
                 {
-                    echo '<p class="text-danger">Prosim vyber produkt</p>';
+                    echo '<p class="text-danger mt-3">Prosím, vyberte produkt</p>';
                 }
                 else
                 {
@@ -83,18 +83,18 @@ include('../connect.php');
                         $row = $result->fetch_assoc();
                         if($row['pocet_kusov'] < $quantity)
                         {
-                            echo '<p class="text-danger">Nemozes odstranit viac kusov ako je na sklade</p>';
+                            echo '<p class="text-danger mt-3">Nemôžeš odstrániť viac kusov ako je na sklade</p>';
                             exit();
                         }
                         $query = 'UPDATE `produkty` SET pocet_kusov=pocet_kusov - '.$quantity.' WHERE ID='.$product.'';
                         $conn->query($query);
-                        echo '<p class="text-success">Produkt bol uspesne aktualizovany</p>';
+                        echo '<p class="text-success mt-3">Produkt bol úspešne aktualizovaný</p>';
                     }
                     else
                     {
                         $query = 'UPDATE `produkty` SET pocet_kusov=pocet_kusov + '.$quantity.' WHERE ID='.$product.'';
                         $conn->query($query);
-                        echo '<p class="text-success">Produkt bol uspesne aktualizovany</p>';
+                        echo '<p class="text-success mt-3">Produkt bol úspešne aktualizovaný</p>';
                     }
                 }
             }

@@ -22,6 +22,6 @@
                 <input type="submit" class='btn btn-success btn-lg mt-3 mb-3'>
             </div>
         </form>
-        <p>Mas uz ucet? <a href="login.php" style="text-decoration: none;">Prihlas sa</a></p>
+        <p>Máš už účet? <a href="login.php" style="text-decoration: none;">Prihlás sa</a></p>
     </div>
 </div>

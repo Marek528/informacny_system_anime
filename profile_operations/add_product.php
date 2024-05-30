@@ -6,7 +6,7 @@ include('../connect.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pridat produkt | Informacny system anime</title>
+    <title>Pridať produkt | Informačný systém anime</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="../favicon.png" type="image/png">
 </head>
@@ -14,14 +14,14 @@ include('../connect.php');
     <?php include('navbar.php'); ?>
     <div class="ms-5 ps-5 mt-3">
         <a href="../profile.php" class="link-opacity-50-hover link-underline link-underline-opacity-0">Späť</a>
-        <h1 class='mt-3'>Pridat produkt</h1>
+        <h1 class='mt-3'>Pridať produkt</h1>
         <form method="POST" action="add_product.php" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="name" class="form-label">Nazov:</label>
+                <label for="name" class="form-label">Názov:</label>
                 <input type="text" name="name" id="name" class="form-control" style="max-width:25em;" required>
             </div>
             <div class="mb-3">
-                <label for="category">Kategoria:</label>
+                <label for="category">Kategória:</label>
                 <select name="category" id="category" class="form-select" style="width:auto;" required>
                     <option selected>-------------------</option>
                     <?php
@@ -43,15 +43,15 @@ include('../connect.php');
                 <input type="number" name="price" id="price" class="form-control" style="width:auto;" min='0' step='0.01' max='99.99' required>
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">Obrazok:</label>
+                <label for="image" class="form-label">Obrázok:</label>
                 <input type="file" name="image" id="image" accept=".png" class="form-control" style="width:auto;" required>
             </div>
             <div class="mb-3">
-                <label for="quantity" class="form-label">Pocet kusov:</label>
+                <label for="quantity" class="form-label">Počet kusov:</label>
                 <input type="number" name="quantity" id="quantity" class="form-control" style="width:auto;" min='1' required>
                 
             </div>
-            <button type="submit" class="btn btn-success" name='update'>Pridat</button>
+            <button type="submit" class="btn btn-success" name='update'>Pridať</button>
         </form>
         <?php
             if(isset($_POST['update']))
@@ -60,7 +60,7 @@ include('../connect.php');
                 $category = $_POST['category'];
                 if($category == '-------------------')
                 {
-                    echo '<p class="text-danger">Vyber si kategoriu!</p>';
+                    echo '<p class="text-danger mt-3">Vyber si kategóriu!</p>';
                     exit();
                 }
                 // overenie ci uz produkt s rovnakym nazvom je v db
@@ -68,7 +68,7 @@ include('../connect.php');
                 $result = $conn->query($query);
                 if($result->num_rows > 0)
                 {
-                    echo '<p class="text-danger">Produkt s rovnakym nazvom uz existuje!</p>';
+                    echo '<p class="text-danger mt-3">Produkt s rovnakým názvom už existuje!</p>';
                     exit();
                 }
 
@@ -96,11 +96,11 @@ include('../connect.php');
 
                     $query = "INSERT INTO `objednavky` (dodavatelID, produktID, stav) VALUES ('$dodavatel_id', '$produkt_id', 'doručuje sa')";
                     $conn->query($query);
-                    echo '<p class="text-success">Produkt bol uspesne pridany</p>';
+                    echo '<p class="text-success mt-3">Produkt bol úspešne pridaný</p>';
                 }
                 else
                 {
-                    echo '<p class="text-danger">Pri pridavani produktu nastala chyba:</p> '.$conn->error.' ';
+                    echo '<p class="text-danger mt-3">Pri pridávaní produktu nastala chyba:</p> '.$conn->error.' ';
                 }
 
                 // download image

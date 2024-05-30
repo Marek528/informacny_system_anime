@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil | Informacny system anime</title>
+    <title>Profil | Informačný systém anime</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="favicon.png" type="image/png">
 </head>
@@ -22,14 +22,14 @@
         echo '<h1>Vitaj '.$_SESSION['meno'].' '.$_SESSION['priezvisko'].'</h1>';
         ?>
 
-        <h4>Operacie</h4>
+        <h4>Operácie</h4>
         <ul>
-            <li><a href='profile_operations/update_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Aktualizovat produkt</a></li>
-            <li><a href='profile_operations/add_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Pridat produkt</a></li>
-            <li><a href='profile_operations/remove_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Odstranit produkt</a></li>
+            <li><a href='profile_operations/update_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Aktualizovať produkt</a></li>
+            <li><a href='profile_operations/add_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Pridať produkt</a></li>
+            <li><a href='profile_operations/remove_product.php' class='link-info link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-50-hover'>Odstrániť produkt</a></li>
         </ul>
 
-        <h4>Moje objednavky</h4>
+        <h4>Moje objednávky</h4>
         <table class="table table-dark table-hover text-center" style="max-width: 70em;">
         <colgroup>
             <col style="width: 35em;">
@@ -39,7 +39,7 @@
         <thead>
             <tr>
                 <th scope="col">Produkt</th>
-                <th scope="col">Pocet kusov</th>
+                <th scope="col">Počet kusov</th>
                 <th scope="col">Stav</th>
             </tr>
         </thead>
@@ -64,7 +64,7 @@
                     echo '<td class="align-middle">'.$row2['pocet_kusov'].'</td>';
                     if ($row['stav'] == "doručuje sa")
                     {
-                        echo '<td class="text-warning">'.$row['stav'].' <a href="profile.php?id='.$row2['ID'].'" class="btn btn-success" role="button">oznacit ako dorucene</a></td>';
+                        echo '<td class="text-warning">'.$row['stav'].' <a href="profile.php?id='.$row2['ID'].'" class="btn btn-success" role="button">označiť ako doručené</a></td>';
                     }
                     else
                     {
@@ -75,7 +75,7 @@
             }
             else 
             {
-                echo '<tr><td colspan="3">Ziadne objednavky</td></tr>';
+                echo '<tr><td colspan="3">Žiadne objednávky</td></tr>';
             }
             ?>
         </tbody>

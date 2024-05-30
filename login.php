@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Informacny system anime</title>
+    <title>Login | Informačný systém anime</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="favicon.png" type="image/png">
@@ -34,9 +34,8 @@
                     <div class="center-wrap">
                         <div class="main">
                             <img src="img/success.png" alt="Uspesne prihlaseny" title="Uspesne prihlaseny">
-                            <h2>Uspesne prihlaseny</h2>
+                            <h2>Úspešne prihlásený</h2>
                             <a href="profile.php" style="text-decoration: none;">Profil</a><br>
-                            <a href="index.php" style="text-decoration: none;">Domovska stranka</a>
                         </div>
                     </div>
                 ';
@@ -45,7 +44,7 @@
             {
                 include('navbar.php');
                 include('login_form.php');
-                echo "<script>alert('Nespravne prihlasovacie udaje');</script>";
+                echo "<script>alert('Nesprávne prihlasovacie údaje');</script>";
             }
         }
         else
