@@ -12,7 +12,7 @@ include('connect.php');
 </head>
 <body>
     <?php include('navbar.php'); ?>
-    <div class='shadow-lg m-3 p-3'>
+    <div class='shadow-lg m-3 p-3 ms-5 me-5'>
         <h3>Kategórie:</h3>
         <ul class='list-group list-group-flush'>
             <?php

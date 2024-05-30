@@ -23,6 +23,20 @@
     align-items: center;
 }
 
-.img-length {
-    max-width: 22em;
+.content-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.image-container {
+    flex-shrink: 0;
+}
+
+.image-container img {
+    display: block;
+    width: auto;
+}
+
+.text-container {
+    margin-left: 3em;
 }

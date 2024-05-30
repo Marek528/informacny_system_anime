@@ -39,8 +39,8 @@ $result = $conn->query($query);
             {
                 $kategoria_id = $row['kategoriaID'];
                 echo "<h2>".$row['nazov']."</h2>";
-                echo '<div class="row mx-0">';
-                echo '<div class="col px-0 img-length">';
+                echo '<div class="content-container">';
+                echo '<div class="image-container">';
                 echo '<img src="'.$row['obrazky'].'" alt="'.$row['nazov'].'" title="'.$row['nazov'].'">';
                 echo '</div>';
             }
@@ -55,7 +55,7 @@ $result = $conn->query($query);
         $result = $conn->query($query);
         if ($result->num_rows > 0)
         {
-            echo '<div class="col px-0">';
+            echo '<div class="text-container">';
             echo "<p class='mb-2'><strong>Kategória: </strong>";
             while ($row = $result->fetch_assoc())
             {
