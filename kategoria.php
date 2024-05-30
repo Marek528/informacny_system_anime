@@ -27,7 +27,7 @@ $result = $conn->query($query);
 </head>
 <body>
     <?php include('navbar.php'); ?>
-    <div class='shadow-lg m-3 p-3'>
+    <div class='shadow-lg m-3 p-3 ms-5 me-5'>
         <?php
         $query = "SELECT * FROM `kategorie` WHERE ID=$id";
         $result = $conn->query($query);
